@@ -75,7 +75,7 @@ function measure1siteoperator(A, O)
     ρ = ones(eltype(A[1]), 1, 1)
     expval = Vector{ComplexF64}(undef, N)
     for k = 1:N
-        @tensor v = scalar(ρ[a,b]*A[k][b,s,c]*O[s',s]*conj(A[k][a,s',c]))
+        @tensor v = ρ[a,b]*A[k][b,s,c]*O[s',s]*conj(A[k][a,s',c])
         expval[k] = v
         @tensor ρ[a,b] := ρ[a',b']*A[k][b',s,b]*conj(A[k][a',s,a])
     end
